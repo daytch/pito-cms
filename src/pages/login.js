@@ -53,7 +53,7 @@ const Login = ({ history }) => {
         }).then((res) => {
             setAuthorizationHeader(res.token);
             localStorage.setItem('PITO:token', JSON.stringify(res.token))
-            toast.success("Berhasil Login !")
+            toast.success("you have successfully logged in !")
             setTimeout(() => {
                 history.push("/")
             }, 2000);
