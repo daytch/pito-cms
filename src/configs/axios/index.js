@@ -2,7 +2,7 @@ import axios from 'axios';
 import errorHandler from './errorHandler';
 
 const instance = axios.create({
-    baseURL: 'http://pitoapi-env.eba-r7biicer.ap-southeast-1.elasticbeanstalk.com/'
+    baseURL: 'https://pito-api.herokuapp.com/'
 })
 
 instance.interceptors.response.use((response) => response.data, errorHandler)
