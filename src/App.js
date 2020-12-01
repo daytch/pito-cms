@@ -3,6 +3,7 @@ import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
 
 //import PrivateRoutes
 import PrivateRoute from 'Routes/PrivateRoute'
+import PrivateMerchantRoute from 'Routes/PrivateMerchantRoute'
 
 //import pages admin
 import Login from 'pages/login'
@@ -58,39 +59,40 @@ function App() {
         <PrivateRoute path="/tickets" component={Tickets} />
         <PrivateRoute path="/categories" component={Categories} />
         <PrivateRoute path="/analytic" component={Analytic} />
-        <Route exact path="/merchant/login" component={LoginMerchant} />
-        <Route path="/merchant/forgot-password" component={ForgotPasswordMerchant} />
+       
+        <PrivateMerchantRoute exact path="/merchant/login" component={LoginMerchant} />
+        <PrivateMerchantRoute path="/merchant/forgot-password" component={ForgotPasswordMerchant} />
         <Route path="/merchant/dashboard"
           render={({ match: { url } }) => (
             <>
-              <PrivateRoute path={`${url}/`} component={DashboardMerchant} exact />
-              <PrivateRoute path={`${url}/create`} component={CreateDashboardMerchant} />
-              <PrivateRoute path={`${url}/edit`} component={EditDashboardMerchant} />
+              <PrivateMerchantRoute path={`${url}/`} component={DashboardMerchant} exact />
+              <PrivateMerchantRoute path={`${url}/create`} component={CreateDashboardMerchant} />
+              <PrivateMerchantRoute path={`${url}/edit`} component={EditDashboardMerchant} />
             </>
           )} />
         <Route path="/merchant/profile"
           render={({ match: { url } }) => (
             <>
-              <PrivateRoute path={`${url}/`} component={ProfileMerchant} exact />
-              <PrivateRoute path={`${url}/edit`} component={ProfileEdit} />
+              <PrivateMerchantRoute path={`${url}/`} component={ProfileMerchant} exact />
+              <PrivateMerchantRoute path={`${url}/edit`} component={ProfileEdit} />
             </>
           )} />
         <Route path="/merchant/livestream"
           render={({ match: { url } }) => (
             <>
-              <PrivateRoute path={`${url}/:id`} component={LivestreamDetail} />
+              <PrivateMerchantRoute path={`${url}/:id`} component={LivestreamDetail} />
             </>
           )} />
         <Route path="/merchant/notification"
           render={({ match: { url } }) => (
             <>
-              <PrivateRoute path={`${url}`} component={Notif} exact />
+              <PrivateMerchantRoute path={`${url}`} component={Notif} exact />
             </>
           )} />
         <Route path="/merchant/support"
           render={({ match: { url } }) => (
             <>
-              <PrivateRoute path={`${url}`} component={Support} exact />
+              <PrivateMerchantRoute path={`${url}`} component={Support} exact />
             </>
           )} />
 
