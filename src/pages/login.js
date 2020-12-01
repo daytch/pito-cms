@@ -19,15 +19,15 @@ import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
 const Login = ({ history }) => {
-    const [username, setUsername] = useState('')
+    const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
 
     //state error handler
     const [errors, seterrors] = useState(null)
 
-    //username on Change text
-    function usernameChange(e) {
-        setUsername(e.target.value)
+    //email on Change text
+    function emailChange(e) {
+        setEmail(e.target.value)
     }
     //password on Change text
     function passwordChange(e) {
@@ -48,7 +48,7 @@ const Login = ({ history }) => {
 
         //use function login from users
         users.login({
-            username,
+            email,
             password
         }).then((res) => {
             setAuthorizationHeader(res.token);
@@ -76,7 +76,7 @@ const Login = ({ history }) => {
                         <form onSubmit={submit}>
                             <div className={["pt-10 flex border-b-2 items-center pb-2 text-xl", errors ? "border-red-600" : "border-gray-400"].join(" ")}>
                                 <LoginIcon />
-                                <input type="text" name="username" value={username} onChange={usernameChange} className="ml-3 focus:outline-none relative w-full" placeholder="Username" />
+                                <input type="email" name="email" value={email} onChange={emailChange} className="ml-3 focus:outline-none relative w-full" placeholder="Email" />
                             </div>
                             <div className={["pt-10 flex border-b-2 items-center pb-2 text-xl", errors ? "border-red-600" : "border-gray-400"].join(" ")}>
                                 <PasswordIcon />

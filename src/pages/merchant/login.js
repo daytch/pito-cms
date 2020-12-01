@@ -23,15 +23,15 @@ import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
 const Login = ({ history }) => {
-    const [username, setUsername] = useState('')
+    const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
 
     //state error handler
     const [errors, seterrors] = useState(null)
 
-    //username on Change text
-    function usernameChange(e) {
-        setUsername(e.target.value)
+    //email on Change text
+    function emailChange(e) {
+        setEmail(e.target.value)
     }
     //password on Change text
     function passwordChange(e) {
@@ -39,7 +39,7 @@ const Login = ({ history }) => {
     }
 
     //Check tokens if ready
-    const token = localStorage.getItem('PITO:token')
+    const token = localStorage.getItem('PITO:merchant-token')
     useEffect(() => {
         if (token) {
             history.push('/')
@@ -51,12 +51,12 @@ const Login = ({ history }) => {
         e.preventDefault();
 
         //use function login from users
-        users.login({
-            username,
+        users.merchantLogin({
+            email,
             password
         }).then((res) => {
             setAuthorizationHeader(res.token);
-            localStorage.setItem('PITO:token', JSON.stringify(res.token))
+            localStorage.setItem('PITO:merchant-token', JSON.stringify(res.token))
             toast.success("you have successfully logged in !")
             setTimeout(() => {
                 history.push("/")
@@ -80,7 +80,7 @@ const Login = ({ history }) => {
                         <form onSubmit={submit}>
                             <div className={["pt-10 flex border-b-2 items-center pb-2 text-xl", errors ? "border-red-600" : "border-gray-400"].join(" ")}>
                                 <LoginIcon />
-                                <input type="text" name="username" value={username} onChange={usernameChange} className="ml-3 focus:outline-none relative w-full" placeholder="Username" />
+                                <input type="email" name="email" value={email} onChange={emailChange} className="ml-3 focus:outline-none relative w-full" placeholder="Email" />
                             </div>
                             <div className={["pt-10 flex border-b-2 items-center pb-2 text-xl", errors ? "border-red-600" : "border-gray-400"].join(" ")}>
                                 <PasswordIcon />
