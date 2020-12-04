@@ -40,9 +40,10 @@ const Login = ({ history }) => {
 
     //Check tokens if ready
     const token = localStorage.getItem('PITO:merchant-token')
+    console.log(token)
     useEffect(() => {
         if (token) {
-            history.push('/')
+                history.push("/merchant/dashboard")
         }
     })
 
@@ -59,7 +60,7 @@ const Login = ({ history }) => {
             localStorage.setItem('PITO:merchant-token', JSON.stringify(res.token))
             toast.success("you have successfully logged in !")
             setTimeout(() => {
-                history.push("/")
+                history.push("/merchant/dashboard")
             }, 2000);
         }).catch(err => {
             seterrors(err?.response?.data?.message)

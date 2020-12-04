@@ -21,13 +21,13 @@ import 'react-toastify/dist/ReactToastify.css';
 const SideNavbarMerchant = () => {
     const classNameSVG = "icon mx-auto"
     const [isOpen, setIsOpen] = React.useState(true)
-    const [token] = React.useState(localStorage.getItem('PITO:token'))
+    const [token] = React.useState(localStorage.getItem('PITO:merchant-token'))
 
     function logout() {
         if (token) {
             toast.success('you have successfully logged out')
             setTimeout(() => {
-                localStorage.removeItem('PITO:token')
+                localStorage.removeItem('PITO:merchant-token')
                 window.location.reload();
             }, 3000);
         }

@@ -60,7 +60,7 @@ function App() {
         <PrivateRoute path="/categories" component={Categories} />
         <PrivateRoute path="/analytic" component={Analytic} />
        
-        <PrivateMerchantRoute exact path="/merchant/login" component={LoginMerchant} />
+        <Route exact path="/merchant/login" component={LoginMerchant} />
         <PrivateMerchantRoute path="/merchant/forgot-password" component={ForgotPasswordMerchant} />
         <Route path="/merchant/dashboard"
           render={({ match: { url } }) => (
