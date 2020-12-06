@@ -6,10 +6,14 @@ import PHONE from 'assets/images/handphone.png'
 import { ReactComponent as PitoLogo } from 'assets/images/pito.svg'
 import { ReactComponent as LoginIcon } from 'assets/images/login-icon.svg'
 import { ReactComponent as PasswordIcon } from 'assets/images/password-icon.svg'
-import { ReactComponent as FbIcon } from 'assets/images/fb-icon-square.svg'
-import { ReactComponent as GoogleIcon } from 'assets/images/google-icon-colorful.svg'
+// import { ReactComponent as FbIcon } from 'assets/images/fb-icon-square.svg'
+// import { ReactComponent as GoogleIcon } from 'assets/images/google-icon-colorful.svg'
 import { ReactComponent as GoogleplaySign } from 'assets/images/googleplay-sign.svg'
 import { ReactComponent as AppstoreSign } from 'assets/images/appstore-sign.svg'
+
+import FacebookLogin from 'react-facebook-login';
+
+import GoogleLogin from 'react-google-login';
 
 
 //import API function
@@ -45,7 +49,7 @@ const Login = ({ history }) => {
         if (token) {
             history.push("/merchant/dashboard")
         }
-    })
+    }, [])
 
     //on submit Login
     const submit = (e) => {
@@ -56,6 +60,36 @@ const Login = ({ history }) => {
             email,
             password
         }).then((res) => {
+            setAuthorizationHeader(res.token);
+            localStorage.setItem('PITO:merchant-token', res.token) //JSON.stringify(res.token))
+            toast.success("you have successfully logged in !")
+            setTimeout(() => {
+                history.push("/merchant/dashboard")
+            }, 2000);
+        }).catch(err => {
+            seterrors(err?.response?.data?.message)
+        })
+    }
+
+    const responseFacebook = (response) => {
+        console.log(response);
+        let email = response.email;
+        users.loginSosmed({ email }).then((res) => {
+            setAuthorizationHeader(res.token);
+            localStorage.setItem('PITO:merchant-token', res.token) //JSON.stringify(res.token))
+            toast.success("you have successfully logged in !")
+            setTimeout(() => {
+                history.push("/merchant/dashboard")
+            }, 2000);
+        }).catch(err => {
+            seterrors(err?.response?.data?.message)
+        })
+    }
+
+    const responseGoogle = (response) => {
+        console.log(response);
+        let email = response.email;
+        users.loginSosmed({ email }).then((res) => {
             setAuthorizationHeader(res.token);
             localStorage.setItem('PITO:merchant-token', res.token) //JSON.stringify(res.token))
             toast.success("you have successfully logged in !")
@@ -97,7 +131,23 @@ const Login = ({ history }) => {
                     <div className="socmed-icon-login flex justify-center items-center mt-6 xl:mt-6 xxl:mt-12">
                         <h6 className="md:text-lg font-light text-gray-700 px-4">Or Continue with
                         </h6>
-                        <span className="flex"><FbIcon className="mr-4" /> <GoogleIcon /></span>
+                        <span className="flex">
+                            <FacebookLogin
+                                appId="324949942140147" //APP ID NOT CREATED YET
+                                fields="name,email,picture"
+                                callback={responseFacebook}
+                            />
+                            <br />
+                            <GoogleLogin
+                                clientId="1005311277215-oqhit00vlfh4r1er8tgb763biopt85p3.apps.googleusercontent.com" //CLIENTID NOT CREATED YET
+                                buttonText="LOGIN WITH GOOGLE"
+                                onSuccess={responseGoogle}
+                                onFailure={responseGoogle}
+                            />
+
+                            {/* <FbIcon className="mr-4" /> 
+                        <GoogleIcon /> */}
+                        </span>
                     </div>
 
                     <div className="flex flex-col mt-4 xl:mt-2 xxl:mt-8">

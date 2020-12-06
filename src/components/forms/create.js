@@ -74,10 +74,40 @@ const Create = () => {
 
     const submit = (e) => {
         e.preventDefault();
-        
+
         let ids = Object.values(categoryid);
         let endDate = startDate + " " + endTime;
         let start = startDate + " " + startTime;
+        debugger;
+        if (!title) {
+            MySwal.fire('Validation!', 'Title cannot be empty.', 'warning');
+            return;
+        }
+
+        if (!startDate) {
+            MySwal.fire('Validation!', 'Start Date cannot be empty.', 'warning');
+            return;
+        }
+
+        if (!startTime) {
+            MySwal.fire('Validation!', 'Start Time cannot be empty.', 'warning');
+            return;
+        }
+
+        if (!endTime) {
+            MySwal.fire('Validation!', 'End Time cannot be empty.', 'warning');
+            return;
+        }
+
+        if (!ids) {
+            MySwal.fire('Validation!', 'Category cannot be empty.', 'warning');
+            return;
+        }
+
+        if (!fb_url && !tiktok_url && !ig_url) {
+            MySwal.fire('Validation!', 'Link streaming video cannot be empty.', 'warning');
+            return;
+        }
 
         const formData = new FormData();
         formData.append("mypic", mypic);

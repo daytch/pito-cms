@@ -40,7 +40,7 @@ const Login = ({ history }) => {
         if (token) {
             history.push('/')
         }
-    })
+    },[])
 
     //on submit Login
     const submit = (e) => {
