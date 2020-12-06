@@ -115544,3 +115544,7 @@ item:hover figure.item-image-live-detail svg.icon{
   }
 }
 
+.img-livestream {
+  height: 100px;
+  width: 100px;
+}

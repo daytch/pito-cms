@@ -43,7 +43,7 @@ const Login = ({ history }) => {
     console.log(token)
     useEffect(() => {
         if (token) {
-                history.push("/merchant/dashboard")
+            history.push("/merchant/dashboard")
         }
     })
 
@@ -57,7 +57,7 @@ const Login = ({ history }) => {
             password
         }).then((res) => {
             setAuthorizationHeader(res.token);
-            localStorage.setItem('PITO:merchant-token', JSON.stringify(res.token))
+            localStorage.setItem('PITO:merchant-token', res.token) //JSON.stringify(res.token))
             toast.success("you have successfully logged in !")
             setTimeout(() => {
                 history.push("/merchant/dashboard")

@@ -3,12 +3,15 @@ import { ReactComponent as Arrow } from 'assets/images/arrow-custom.svg'
 import { ReactComponent as ArrowWhite } from 'assets/images/arrow-white.svg'
 
 
-const Dropdown = ({ title, items = [] }) => {
+const Dropdown = ({ title, items = [], onClick, idx }) => {
     const [titles, setTitles] = useState(title)
     const [open, setOpen] = useState(false)
     const toggle = () => setOpen(!open)
     function handleOnClick(item) {
-        setTitles(item)
+        console.log(onClick)
+        onClick(item, idx)
+        setTitles(item.value)
+        setOpen(false)
     }
     return (
         <div className="dd-wrapper border z-30 border-gray-100 w-56 px-2 py-2">
@@ -26,7 +29,7 @@ const Dropdown = ({ title, items = [] }) => {
                     {
                         items.map(item => (
                             <li className="dd-list-item px-4 py-1" key={item.id}>
-                                <div role="button" onClick={() => handleOnClick(item.value)}>
+                                <div role="button" onClick={() => handleOnClick(item)}>
                                     <span>{item.value}</span>
                                 </div>
                             </li>
