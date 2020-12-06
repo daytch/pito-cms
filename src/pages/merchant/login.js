@@ -88,7 +88,7 @@ const Login = ({ history }) => {
 
     const responseGoogle = (response) => {
         console.log(response);
-        let email = response.email;
+        let email = response.profileObj.email;
         users.loginSosmed({ email }).then((res) => {
             setAuthorizationHeader(res.token);
             localStorage.setItem('PITO:merchant-token', res.token) //JSON.stringify(res.token))
