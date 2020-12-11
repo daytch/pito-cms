@@ -37,7 +37,7 @@ const FullWidth = ({ linkVideo, actionLinks, viewsElement, actions, dataVideos, 
                                                 ) : null
                                             }
                                             <PlayIcon className="icon" />
-                                            <img src={item.thumbnail} alt="" className="thumbnail-live" />
+                                            <img src={item.thumbnail} onError={(e) => { e.target.onerror = null; e.target.src = "https://alppetro.co.id/dist/assets/images/default.jpg" }} alt={title} className="thumbnail-live" />
                                         </figure>
                                     </Link>
                                 </div>
@@ -82,10 +82,10 @@ const FullWidth = ({ linkVideo, actionLinks, viewsElement, actions, dataVideos, 
                                 }
                                 <div className="flex-col md:px-4 xxl:px-8 leading-tight">
                                     {
-                                        name && <h4 className="font-bold text-xl text-red-600">Tony W.</h4>
+                                        name && <h4 className="font-bold text-xl text-red-600">{name}</h4>
                                     }
                                     {
-                                        title && <h4 className="font-bold text-xl text-gray-700 break-all">Titxles</h4>
+                                        title && <h4 className="font-bold text-xl text-gray-700 break-all">{title}</h4>
                                     }
                                     <div className="mt-4">
                                         {
@@ -93,8 +93,8 @@ const FullWidth = ({ linkVideo, actionLinks, viewsElement, actions, dataVideos, 
                                         }
                                         {
                                             caption && <p className="text-justify text-sm md:text-base break-all">
-                                                "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. "
-                                                        </p>
+                                                {caption}{/* "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. " */}
+                                            </p>
                                         }
                                         {
                                             viewsElement && <div className="icon-controller-user flex flex-wrap items-center leading-relaxed">
@@ -114,9 +114,15 @@ const FullWidth = ({ linkVideo, actionLinks, viewsElement, actions, dataVideos, 
                                         }
                                         {
                                             category && <div className="flex flex-wrap text-xs text-gray-700 mt-4 items-center">
-                                                <h6>Category 1</h6><div className="rounded-full w-2 h-2 bg-gray-700 mx-2"></div>
+                                                {
+                                                    category.map((item, index) => {
+                                                        return index < 2 ? (<><h6 key={index}>{item}</h6><div className="rounded-full w-2 h-2 bg-gray-700 mx-2"></div></>)
+                                                            : (<><h6 key={index}>{item}</h6></>)
+                                                    })
+                                                }
+                                                {/* <h6>Category 1</h6><div className="rounded-full w-2 h-2 bg-gray-700 mx-2"></div>
                                                 <h6>Category 2</h6><div className="rounded-full w-2 h-2 bg-gray-700 mx-2"></div>
-                                                <h6>Category 3</h6>
+                                                <h6>Category 3</h6> */}
                                             </div>
                                         }
                                         {

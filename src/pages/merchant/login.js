@@ -44,7 +44,6 @@ const Login = ({ history }) => {
 
     //Check tokens if ready
     const token = localStorage.getItem('PITO:merchant-token')
-    console.log(token)
     useEffect(() => {
         if (token) {
             history.push("/merchant/dashboard")
@@ -61,7 +60,7 @@ const Login = ({ history }) => {
             password
         }).then((res) => {
             setAuthorizationHeader(res.token);
-            localStorage.setItem('PITO:merchant-token', res.token) //JSON.stringify(res.token))
+            localStorage.setItem('PITO:merchant-token', res.token) 
             toast.success("you have successfully logged in !")
             setTimeout(() => {
                 history.push("/merchant/dashboard")
@@ -71,31 +70,29 @@ const Login = ({ history }) => {
         })
     }
 
-    const responseFacebook = (response) => {
-        console.log(response);
+    const responseFacebook = (response) => {        
         let email = response.email;
         users.loginSosmed({ email }).then((res) => {
             setAuthorizationHeader(res.token);
-            localStorage.setItem('PITO:merchant-token', res.token) //JSON.stringify(res.token))
+            localStorage.setItem('PITO:merchant-token', res.token) 
             toast.success("you have successfully logged in !")
             setTimeout(() => {
                 history.push("/merchant/dashboard")
-            }, 2000);
+            }, 500);
         }).catch(err => {
             seterrors(err?.response?.data?.message)
         })
     }
 
-    const responseGoogle = (response) => {
-        console.log(response);
+    const responseGoogle = (response) => {        
         let email = response.profileObj.email;
         users.loginSosmed({ email }).then((res) => {
             setAuthorizationHeader(res.token);
-            localStorage.setItem('PITO:merchant-token', res.token) //JSON.stringify(res.token))
+            localStorage.setItem('PITO:merchant-token', res.token) 
             toast.success("you have successfully logged in !")
             setTimeout(() => {
                 history.push("/merchant/dashboard")
-            }, 2000);
+            }, 500);
         }).catch(err => {
             seterrors(err?.response?.data?.message)
         })

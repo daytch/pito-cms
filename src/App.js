@@ -61,7 +61,7 @@ function App() {
         <PrivateRoute path="/analytic" component={Analytic} />
        
         <Route exact path="/merchant/login" component={LoginMerchant} />
-        <PrivateMerchantRoute path="/merchant/forgot-password" component={ForgotPasswordMerchant} />
+        <Route path="/merchant/forgot-password" component={ForgotPasswordMerchant} />
         <Route path="/merchant/dashboard"
           render={({ match: { url } }) => (
             <>

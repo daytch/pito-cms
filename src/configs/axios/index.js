@@ -1,6 +1,8 @@
 import axios from 'axios';
-import errorHandler from './errorHandler';
+import Swal from 'sweetalert2';
+import withReactContent from 'sweetalert2-react-content';
 
+const MySwal = withReactContent(Swal)
 const instance = axios.create({
     baseURL: 'https://pito-api.herokuapp.com/'
 })
@@ -22,8 +24,10 @@ instance.interceptors.response.use((response) => response.data, error => {
             localStorage.removeItem('PITO:merchant-token')
             window.location.href = "/merchant/login"
         }
+    } else {
+        MySwal.fire('Error!', error?.response?.data?.message, 'error');
     }
-}, errorHandler)
+})
 
 export {
     default as setAuthorizationHeader
