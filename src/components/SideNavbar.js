@@ -29,10 +29,12 @@ const SideNavbar = ({ history }) => {
     function logout() {
         if (token) {
             toast.success('you have successfully logged out')
-            setTimeout(() => {
-                localStorage.removeItem('PITO:token')
-                window.location.reload();
-            }, 3000);
+            localStorage.removeItem('PITO:token')
+            window.location.reload();
+            // setTimeout(() => {
+            //     localStorage.removeItem('PITO:token')
+            //     window.location.reload();
+            // }, 3000);
         }
     }
     return (

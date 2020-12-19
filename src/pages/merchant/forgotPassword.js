@@ -1,7 +1,6 @@
 import React, { useState } from 'react'
 import { ReactComponent as Pito } from 'assets/images/pito.svg'
 import users from 'api/users'
-import { toast } from 'react-toastify';
 import Swal from 'sweetalert2'
 import withReactContent from 'sweetalert2-react-content'
 import Spinner from 'components/spinner'

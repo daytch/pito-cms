@@ -26,10 +26,12 @@ const SideNavbarMerchant = () => {
     function logout() {
         if (token) {
             toast.success('you have successfully logged out')
-            setTimeout(() => {
-                localStorage.removeItem('PITO:merchant-token')
-                window.location.reload();
-            }, 3000);
+            localStorage.removeItem('PITO:merchant-token')
+            window.location.reload();
+            // setTimeout(() => {
+            //     localStorage.removeItem('PITO:merchant-token')
+            //     window.location.reload();
+            // }, 3000);
         }
     }
 

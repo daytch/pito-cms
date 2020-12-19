@@ -93,7 +93,7 @@ const FullWidth = ({ linkVideo, actionLinks, viewsElement, actions, dataVideos, 
                                         }
                                         {
                                             caption && <p className="text-justify text-sm md:text-base break-all">
-                                                {caption}{/* "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. " */}
+                                                {caption}
                                             </p>
                                         }
                                         {
@@ -113,17 +113,14 @@ const FullWidth = ({ linkVideo, actionLinks, viewsElement, actions, dataVideos, 
                                             </div>
                                         }
                                         {
-                                            category && <div className="flex flex-wrap text-xs text-gray-700 mt-4 items-center">
+                                            category && <>
                                                 {
                                                     category.map((item, index) => {
-                                                        return index < 2 ? (<><h6 key={index}>{item}</h6><div className="rounded-full w-2 h-2 bg-gray-700 mx-2"></div></>)
-                                                            : (<><h6 key={index}>{item}</h6></>)
+                                                        return index < 2 ? (<div key={index} className="flex flex-wrap text-xs text-gray-700 mt-4 items-center"><h6>{item}</h6><div className="rounded-full w-2 h-2 bg-gray-700 mx-2"></div></div>)
+                                                            : (<div key={index} className="flex flex-wrap text-xs text-gray-700 mt-4 items-center"><h6>{item}</h6></div>)
                                                     })
                                                 }
-                                                {/* <h6>Category 1</h6><div className="rounded-full w-2 h-2 bg-gray-700 mx-2"></div>
-                                                <h6>Category 2</h6><div className="rounded-full w-2 h-2 bg-gray-700 mx-2"></div>
-                                                <h6>Category 3</h6> */}
-                                            </div>
+                                            </>
                                         }
                                         {
                                             socmedCustom && (

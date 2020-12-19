@@ -62,9 +62,10 @@ const Login = ({ history }) => {
             setAuthorizationHeader(res.token);
             localStorage.setItem('PITO:merchant-token', res.token) 
             toast.success("you have successfully logged in !")
-            setTimeout(() => {
-                history.push("/merchant/dashboard")
-            }, 2000);
+            history.push("/merchant/dashboard")
+            // setTimeout(() => {
+            //     history.push("/merchant/dashboard")
+            // }, 2000);
         }).catch(err => {
             seterrors(err?.response?.data?.message)
         })

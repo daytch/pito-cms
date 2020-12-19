@@ -7,8 +7,6 @@ import Dropdown from 'components/forms/dropdown'
 import Spinner from 'components/spinner'
 
 import livestream from 'api/livestream';
-//Import toastify notify
-// import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import Swal from 'sweetalert2'
 import withReactContent from 'sweetalert2-react-content'
