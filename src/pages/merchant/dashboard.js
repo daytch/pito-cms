@@ -25,8 +25,8 @@ const Dashboard = () => {
     }, []) //[liveVideos, previousVideos, upcomingVideos])
 
     return (
-        <Spinner isLoading={isLoading}>
-            <section className="flex flex-col xl:flex-row">
+        <Spinner isLoading={isLoading} className="min-h-screen">
+            <section className="min-h-screen flex flex-col xl:flex-row">
                 <SideNavbarMerchant />
                 <div className="py-10 md:py-20 px-5 w-full">
                     <div className="flex">

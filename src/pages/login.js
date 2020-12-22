@@ -53,17 +53,20 @@ const Login = ({ history }) => {
         }).then((res) => {
             setAuthorizationHeader(res.token);
             localStorage.setItem('PITO:token', JSON.stringify(res.token))
+            localStorage.setItem('PITO:img', res.image) 
+            localStorage.setItem('PITO:name', res.name) 
             toast.success("you have successfully logged in !")
-            setTimeout(() => {
-                history.push("/")
-            }, 2000);
+            history.push("/")
+            // setTimeout(() => {
+            //     history.push("/")
+            // }, 2000);
         }).catch(err => {
             seterrors(err?.response?.data?.message)
         })
     }
 
     return (
-        <section className="login-clipping w-full">
+        <section className="min-h-screen login-clipping w-full">
             <ToastContainer position="top-right" />
             <div className="clipper hidden xl:block"></div>
             <div className="img-phone xl:w-1/2 hidden xl:absolute py-20 xl:flex justify-end">

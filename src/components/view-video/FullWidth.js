@@ -113,14 +113,14 @@ const FullWidth = ({ linkVideo, actionLinks, viewsElement, actions, dataVideos, 
                                             </div>
                                         }
                                         {
-                                            category && <>
+                                            category && <div className="flex flex-wrap text-sm font-medium text-gray-700 items-center mt-2">
                                                 {
                                                     category.map((item, index) => {
-                                                        return index < 2 ? (<div key={index} className="flex flex-wrap text-xs text-gray-700 mt-4 items-center"><h6>{item}</h6><div className="rounded-full w-2 h-2 bg-gray-700 mx-2"></div></div>)
-                                                            : (<div key={index} className="flex flex-wrap text-xs text-gray-700 mt-4 items-center"><h6>{item}</h6></div>)
+                                                        return index < 2 ? (<><h6>{item}</h6><div className="rounded-full w-2 h-2 bg-gray-700 mx-2"></div></>)
+                                                            : (<><h6>{item}</h6></>)
                                                     })
                                                 }
-                                            </>
+                                            </div>
                                         }
                                         {
                                             socmedCustom && (

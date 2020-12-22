@@ -1,10 +1,8 @@
 import React, { useState } from 'react'
 
 //import image 
-import ProfilePicture from 'assets/images/profile.png'
 import { ReactComponent as PitoLogoSmall } from 'assets/images/pito-small.svg'
 import { ReactComponent as DashboardIcon } from 'assets/images/dashboard-icon.svg'
-import { ReactComponent as LivestreamIcon } from 'assets/images/livestream-icon.svg'
 import { ReactComponent as MerchantListIcon } from 'assets/images/merchantlist-icon.svg'
 import { ReactComponent as UserlistIcon } from 'assets/images/userlist-icon.svg'
 import { ReactComponent as AnalyticIcon } from 'assets/images/analytic-icon.svg'
@@ -12,6 +10,7 @@ import { ReactComponent as TicketIcon } from 'assets/images/ticketsup-icon.svg'
 import { ReactComponent as CategoriesIcon } from 'assets/images/categories-icon.svg'
 import { ReactComponent as LogoutIcon } from 'assets/images/logout-icon.svg'
 import { ReactComponent as Hamburger } from 'assets/images/hamburger.svg'
+import Avatar from 'react-avatar';
 
 //import components
 import ListMenu from './listMenu/index'
@@ -25,6 +24,8 @@ const SideNavbar = ({ history }) => {
     const classNameSVG = "icon mx-auto"
     const [isOpen, setIsOpen] = useState(true)
     const [token] = React.useState(localStorage.getItem('PITO:token'))
+    const [img] = useState(localStorage.getItem('PITO:img'))
+    const [name] = useState(localStorage.getItem('PITO:name'))
 
     function logout() {
         if (token) {
@@ -40,13 +41,16 @@ const SideNavbar = ({ history }) => {
     return (
         <>
             <ToastContainer position="top-right" />
-            <div className="w-full flex justify-between xl:hidden bg-gray-800 items-center">
+            <div className="min-h-screen w-full flex justify-between xl:hidden bg-gray-800 items-center">
                 <div className="px-4 py-3">
                     <PitoLogoSmall />
                 </div>
                 <div className="mb-navbar flex items-center px-4 py-3">
-                    <h5 className="text-white text-xs text-right px-2">Hello, <br /><span className="font-medium text-red-600 text-sm">Trumps</span></h5>
-                    <img src={ProfilePicture} className="px-2 w-20" alt="" />
+                    <h5 className="text-white text-xs text-right px-2">Hello, <br /><span className="font-medium text-red-600 text-sm">{name}</span></h5>
+                        {
+                            img ? (<img style={{ width: 80, height: 80, borderRadius: 80 / 2 }} src={img} className="mx-auto" alt={name}></img>) :
+                                (<Avatar name="Nurul Hidayat" className="mx-auto" round={true} size="75px" />)
+                        }
                     <button onClick={() => setIsOpen(!isOpen)}><Hamburger /></button>
                 </div>
             </div>
@@ -67,9 +71,9 @@ const SideNavbar = ({ history }) => {
                         <ListMenu linkTo="/">
                             <DashboardIcon className={classNameSVG} />
                         </ListMenu>
-                        <ListMenu linkTo="/livestream-list">
+                        {/* <ListMenu linkTo="/livestream-list">
                             <LivestreamIcon className={classNameSVG} />
-                        </ListMenu>
+                        </ListMenu> */}
                         <ListMenu linkTo="/merchant-list">
                             <MerchantListIcon className={classNameSVG} />
                         </ListMenu>
@@ -103,16 +107,19 @@ const SideNavbar = ({ history }) => {
                 <div className="py-10 w-full">
                     <PitoLogoSmall className="mx-auto" />
                     <div className="profile pt-6 text-center">
-                        <img src={ProfilePicture} className="mx-auto" alt="" />
+                        {
+                            img ? (<img style={{ width: 80, height: 80, borderRadius: 80 / 2 }} src={img} className="mx-auto" alt={name}></img>) :
+                                (<Avatar name="Nurul Hidayat" className="mx-auto" round={true} size="75px" />)
+                        }
                         <h5 className="text-white mt-4 text-sm">Hello, <br /><span className="font-medium text-red-600 text-base">Trumps</span></h5>
                     </div>
                     <section className="mt-2">
                         <ListMenu linkTo="/">
                             <DashboardIcon className={classNameSVG} />
                         </ListMenu>
-                        <ListMenu linkTo="/livestream-list">
+                        {/* <ListMenu linkTo="/livestream-list">
                             <LivestreamIcon className={classNameSVG} />
-                        </ListMenu>
+                        </ListMenu> */}
                         <ListMenu linkTo="/merchant-list">
                             <MerchantListIcon className={classNameSVG} />
                         </ListMenu>

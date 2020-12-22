@@ -60,7 +60,10 @@ const Login = ({ history }) => {
             password
         }).then((res) => {
             setAuthorizationHeader(res.token);
+            debugger;
             localStorage.setItem('PITO:merchant-token', res.token) 
+            localStorage.setItem('PITO:merchant-img', res.image) 
+            localStorage.setItem('PITO:merchant-name', res.name) 
             toast.success("you have successfully logged in !")
             history.push("/merchant/dashboard")
             // setTimeout(() => {
@@ -100,7 +103,7 @@ const Login = ({ history }) => {
     }
 
     return (
-        <section className="login-clipping w-full">
+        <section className="min-h-screen login-clipping w-full">
             <ToastContainer position="top-right" />
             <div className="clipper hidden xl:block"></div>
             <div className="img-phone xl:w-1/2 hidden xl:absolute py-20 xl:flex justify-end">

@@ -1,7 +1,6 @@
-import React from 'react'
+import React, { useState } from 'react'
 
 //import image 
-import ProfilePicture from 'assets/images/profile.png'
 import { ReactComponent as PitoLogoSmall } from 'assets/images/pito-small.svg'
 import { ReactComponent as DashboardIcon } from 'assets/images/dashboard-icon.svg'
 import { ReactComponent as ProfileIcon } from 'assets/images/profile-icon.svg'
@@ -16,12 +15,14 @@ import ListMenu from './listMenu/index'
 //Import toastify notify
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-
+import Avatar from 'react-avatar';
 
 const SideNavbarMerchant = () => {
     const classNameSVG = "icon mx-auto"
-    const [isOpen, setIsOpen] = React.useState(true)
-    const [token] = React.useState(localStorage.getItem('PITO:merchant-token'))
+    const [isOpen, setIsOpen] = useState(true)
+    const [token] = useState(localStorage.getItem('PITO:merchant-token'))
+    const [img] = useState(localStorage.getItem('PITO:merchant-img'))
+    const [name] = useState(localStorage.getItem('PITO:merchant-name'))
 
     function logout() {
         if (token) {
@@ -38,13 +39,15 @@ const SideNavbarMerchant = () => {
     return (
         <>
             <ToastContainer position="top-right" />
-            <div className="w-full flex justify-between xl:hidden bg-gray-800 items-center">
+            <div className="min-h-screen w-full flex justify-between xl:hidden bg-gray-800 items-center">
                 <div className="px-4 py-3">
-                    <PitoLogoSmall />
                 </div>
                 <div className="mb-navbar flex items-center px-4 py-3">
-                    <h5 className="text-white text-sm text-right px-2">Hello, <br /><span className="font-medium text-red-600 text-base">Trumps</span></h5>
-                    <img src={ProfilePicture} className="px-2" alt="" />
+                    <h5 className="text-white text-sm text-right px-2">Hello, <br /><span className="font-medium text-red-600 text-base">{name}</span></h5>
+                    {
+                        img ? (<img style={{ width: 80, height: 80, borderRadius: 80 / 2 }} src={img} className="px-2 w-20" alt={name}></img>) :
+                            (<Avatar name="Nurul Hidayat" className="mx-auto" round={true} size="75px" />)
+                    }
                     <button onClick={() => setIsOpen(!isOpen)}><Hamburger /></button>
                 </div>
             </div>
@@ -90,8 +93,11 @@ const SideNavbarMerchant = () => {
                 <div className="py-10 w-full">
                     <PitoLogoSmall className="mx-auto" />
                     <div className="profile pt-6 text-center">
-                        <img src={ProfilePicture} className="mx-auto" alt="" />
-                        <h5 className="text-white mt-4 text-sm">Hello, <br /><span className="font-medium text-red-600 text-base">Trumps</span></h5>
+                        {
+                            img ? (<img style={{ width: 80, height: 80, borderRadius: 80 / 2 }} src={img} className="mx-auto" alt={name}></img>) :
+                                (<Avatar name="Nurul Hidayat" className="mx-auto" round={true} size="75px" />)
+                        }
+                        <h5 className="text-white mt-4 text-sm">Hello, <br /><span className="font-medium text-red-600 text-base">{name}</span></h5>
                     </div>
                     <section className="mt-2">
                         <ListMenu linkTo="/merchant/dashboard">
